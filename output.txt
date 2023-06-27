@@ -1,0 +1,11 @@
+Case Number: 1
+France 1325
+Portugal 416
+Spain 382
+
+Case Number: 2
+Luxembourg 0
+
+Case Number: 3
+Belgium 2
+Netherlands 2

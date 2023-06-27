@@ -1,0 +1,24 @@
+# Compiled binaries and build outputs
+bin/
+obj/
+
+
+# Visual Studio files and folders
+.vs/
+*.suo
+*.user
+*.userprefs
+*.vscode/
+*.vssscc
+*.vspscc
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# macOS files
+.DS_Store
+
+# NuGet packages
+*.nuget.props
+*.nuget.targets
