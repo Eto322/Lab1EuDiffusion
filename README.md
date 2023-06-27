@@ -1,4 +1,3 @@
-```markdown
 # Lab1EuDiffusion
 
 This repository contains a simulation program for the diffusion of coins among European countries. The program takes input data specifying the initial conditions for each country and simulates the diffusion process until all countries are fully connected.
