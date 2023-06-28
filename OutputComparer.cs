@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace Lab1EuDiffusion
@@ -6,25 +7,43 @@ namespace Lab1EuDiffusion
     {
         public static bool CompareOutputWithDesired(string outputFilePath, string desiredFilePath)
         {
-            string output = ReadFromFile(outputFilePath);
-            string desiredOutput = ReadFromFile(desiredFilePath);
+            try
+            {
+                string output = ReadFromFile(outputFilePath);
+                string desiredOutput = ReadFromFile(desiredFilePath);
 
-            string normalizedOutput = NormalizeString(output);
-            string normalizedDesiredOutput = NormalizeString(desiredOutput);
+                string normalizedOutput = NormalizeString(output);
+                string normalizedDesiredOutput = NormalizeString(desiredOutput);
 
-            return normalizedOutput.Equals(normalizedDesiredOutput);
+                return normalizedOutput.Equals(normalizedDesiredOutput);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while comparing output files:");
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
 
         private static string ReadFromFile(string filePath)
         {
-            if (!File.Exists(filePath))
+            try
             {
-                File.Create(filePath).Dispose();
+                if (!File.Exists(filePath))
+                {
+                    File.Create(filePath).Dispose();
+                    return string.Empty;
+                }
+
+                string fileContent = File.ReadAllText(filePath);
+                return fileContent.Trim(); // Trim to remove leading/trailing whitespace
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while reading the file: {filePath}");
+                Console.WriteLine(ex.Message);
                 return string.Empty;
             }
-
-            string fileContent = File.ReadAllText(filePath);
-            return fileContent.Trim(); // Trim to remove leading/trailing whitespace
         }
 
         private static string NormalizeString(string input)
