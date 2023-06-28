@@ -2,7 +2,7 @@
 
 namespace Lab1EuDiffusion
 {
-    class CoinWorker 
+    class CoinWorker
     {
         public string countryName { get; }
         public int numberOfDays { get; private set; }
@@ -22,8 +22,17 @@ namespace Lab1EuDiffusion
             if (name.Length > 48) //United Kingdom of Great Britain and Northern Ireland (47 letters)
                 throw new Exception("Name should not contain more than 48 letters.");
 
-            if (xl >= maxX || yl >= maxY || xh >= maxX || yh >= maxY)
-                throw new Exception("Coordinates should be less than the maximum value.");
+            if (
+                xl >= maxX
+                || yl >= maxY
+                || xh >= maxX
+                || yh >= maxY
+                || xl < 0
+                || yl < 0
+                || xh < 0
+                || yh < 0
+            )
+                throw new Exception("Coordinates should be within the valid range.");
 
             countryName = name;
             Xl = xl - 1;
@@ -119,7 +128,6 @@ namespace Lab1EuDiffusion
             return x >= 0 && y >= 0 && x < _max_X && y < _max_Y && _countryMatrix[x, y];
         }
 
-       
         public int GetCityCoins(int x, int y)
         {
             return _currentMatrix[x, y];
