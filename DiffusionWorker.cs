@@ -9,17 +9,16 @@ namespace Lab1EuDiffusion
     class DiffusionWorker
     {
         const int MAX_NUMBER_OF_DAYS = 10000;
-        const int MAX_NUMBER_OF_COUNTRIES = 44; //By the conventional definition, there are 44 sovereign states or nations in Europe.
-
+        const int MAX_NUMBER_OF_COUNTRIES = 20; 
         private readonly int _countryCount;
         private readonly CoinWorker[] _countryArray;
         private readonly bool[,] _countryMatrix;
 
         public DiffusionWorker(CoinWorker[] countries, int maxX, int maxY)
         {
-            if (countries.Length > MAX_NUMBER_OF_COUNTRIES) //check input data
+            if (countries.Length >= MAX_NUMBER_OF_COUNTRIES) //check input data
             {
-                throw new Exception("Number of countries should not exceed the maximum value.");
+                throw new Exception("Number of countries should not exceed the maximum value.(1<=c<=20)");
             }
 
             _countryCount = countries.Length;

@@ -4,6 +4,11 @@ namespace Lab1EuDiffusion
 {
     class CoinWorker
     {
+        const int MAX_NAME_LENGHT = 25;
+        const int INITIAL_MOTIF = 1000000;
+
+        const int COINS_PER_AMOUNT = 1000;
+
         public string countryName { get; }
         public int numberOfDays { get; private set; }
         public bool isComplete { get; private set; }
@@ -19,8 +24,8 @@ namespace Lab1EuDiffusion
 
         public CoinWorker(string name, int xl, int yl, int xh, int yh, int maxX, int maxY)
         {
-            if (name.Length > 48) //United Kingdom of Great Britain and Northern Ireland (47 letters)
-                throw new Exception("Name should not contain more than 48 letters.");
+            if (name.Length >= MAX_NAME_LENGHT)
+                throw new Exception("Name should not contain more than 25 letters.");
 
             if (
                 xl >= maxX
@@ -48,7 +53,7 @@ namespace Lab1EuDiffusion
             {
                 for (int y = Yl; y <= Yh; y++)
                 {
-                    _currentMatrix[x, y] = 1000000;
+                    _currentMatrix[x, y] = INITIAL_MOTIF;
                 }
             }
         }
@@ -61,7 +66,7 @@ namespace Lab1EuDiffusion
             {
                 for (int y = 0; y < 10; y++)
                 {
-                    int amount = _currentMatrix[x, y] / 1000;
+                    int amount = _currentMatrix[x, y] / COINS_PER_AMOUNT;
                     int transportationCount = TransportToNeighbors(result, x, y, amount);
                     result[x, y] += _currentMatrix[x, y] - transportationCount * amount;
                 }
