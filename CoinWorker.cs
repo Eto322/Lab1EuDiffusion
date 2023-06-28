@@ -2,7 +2,7 @@
 
 namespace Lab1EuDiffusion
 {
-    class CoinWorker : IComparable
+    class CoinWorker 
     {
         public string countryName { get; }
         public int numberOfDays { get; private set; }
@@ -119,17 +119,7 @@ namespace Lab1EuDiffusion
             return x >= 0 && y >= 0 && x < _max_X && y < _max_Y && _countryMatrix[x, y];
         }
 
-        public int CompareTo(object obj)
-        {
-            if (obj is CoinWorker other)
-            {
-                int comparison = numberOfDays.CompareTo(other.numberOfDays);
-                return comparison != 0 ? comparison : countryName.CompareTo(other.countryName);
-            }
-
-            return -1;
-        }
-
+       
         public int GetCityCoins(int x, int y)
         {
             return _currentMatrix[x, y];
